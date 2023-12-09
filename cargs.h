@@ -7,7 +7,7 @@
 struct cargs;
 
 // cargs 생성
-struct cargs* cargs_init(int argc, const char** argv);
+struct cargs* cargs_init();
 
 // 인자의 옵션 처리
 // 옵션으로 처리할 키워드를 지정하고 함수를 지정합니다
@@ -33,7 +33,7 @@ void cargs_args(struct cargs* cargs, OPTFUNC(call));
 // 인자에 나타나는 옵션의 순서대로 옵션 처리 함수가 실행됩니다
 // 모든 옵션 처리 함수가 끝난 다음 남은 인자를 처리하는 함수를 실행합니다
 // 남은 인자가 0개라도 남은 인자를 처리하는 함수를 수행합니다
-void cargs_run(struct cargs* cargs);
+void cargs_run(struct cargs* cargs, int argc, const char** argv);
 
 // cargs 정리
 void cargs_close(struct cargs* cargs);

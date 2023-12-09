@@ -55,11 +55,8 @@ inline int cargs_eoa(struct cargs* cargs) {
     return (cargs->index >= cargs->argc);
 }
 
-struct cargs* cargs_init(int argc, const char** argv) {
+struct cargs* cargs_init() {
     struct cargs* args = (struct cargs*)malloc(sizeof(struct cargs));
-    args->index = 1;
-    args->argc = argc;
-    args->argv = argv;
     args->opt_first = NULL;
     args->opt_last = NULL;
     args->argcall = NULL;
@@ -124,9 +121,13 @@ void cargs_args(struct cargs* cargs, OPTFUNC(call)) {
     cargs->argcall = call;
 }
 
-void cargs_run(struct cargs* cargs) {    
+void cargs_run(struct cargs* cargs, int argc, const char** argv) {
     int isopt, isoptex, isnormal;
     struct optinfo *opt;
+    
+    cargs->index = 1;
+    cargs->argc = argc;
+    cargs->argv = argv;
     OPTFUNC(call) = cargs->argcall;
 
     const char** normalarg = NULL;

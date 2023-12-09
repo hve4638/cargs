@@ -22,11 +22,11 @@ void normal(int argc, const char** argv) {
 }
 
 int main(int argc, const char** argv) {
-    struct cargs* args = cargs_init(argc, argv);
+    struct cargs* args = cargs_init();
 
     cargs_option(args, "p:print", 1, optprint, 0);
     cargs_option(args, "v:verbose", 0, optverbose, 0); 
     cargs_args(args, normal);
-    cargs_run(args);
+    cargs_run(args, argc, argv);
     cargs_close(args);
 }
